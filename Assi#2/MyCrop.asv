@@ -1,0 +1,33 @@
+function [CroppedIm] = MyCrop(img,row,col)
+
+imm = imcomplement(img);
+
+dim = [];
+o=1;
+
+[x y] =size(imm);
+
+for i=1:x
+z =imm(i:i,1:y);
+if(max(z)==0)
+    continue;
+elseif(max(z)==1 && size(dim)<2)
+ dim(o)=i;
+ o=o+1;
+ break;
+end
+end
+for j=1:y
+    z=imm(1:x,j:j);
+    if(max(z)==0)
+        continue;
+    elseif(max(z) ==
+        dim(o)=j;
+        o=o+1;
+        break;
+    end
+end
+dim
+CroppedIm =imm(dim(1):dim(2),dim(3):dim(4));
+imshow(CroppedIm)
+end

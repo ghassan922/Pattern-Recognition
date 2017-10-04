@@ -1,0 +1,37 @@
+function [FV,Digit] = MyTrain(row,col)
+temp=[];
+FV =[];
+Digit= [];
+FVtemp = [];
+
+path='Digits_Samples\';
+npath =[]; 
+for i = 1:10
+npath = strcat(path,int2str(i-1));
+npath = strcat(npath,'\');
+nnpath = strcat(npath,'\*.bmp');
+images = dir(nnpath);
+for j=1:length(images)
+imageName = images(j).name;
+imageLabel = imageName(1:1);
+img_path = strcat(npath,images(j).name);
+c = Centroid(img_path,row,col);
+end
+Digit = vertcat(Digit,int2str(i-1)); 
+FV(i) = sum(c)/length(c);
+end
+
+
+%if(imageLabel == temp)
+%Digit = vertcat(Digit,imageLabel);
+%else
+%Digit= vertcat(Digit,'77');
+%end
+%FV = horzcat(FV,i);
+%newPath = strcat(path,imageName);
+%img = imread(newPath);
+%imge = imcomplement(img);
+%imshow(imge);
+%temp = imageLabel;
+
+end
